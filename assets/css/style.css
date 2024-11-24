@@ -168,7 +168,7 @@ a {
 }
 
 a:hover, a:active, a:focus {
-  color: #2dca98;
+  color: #ececec;
   outline: none;
   text-decoration: none;
 }
