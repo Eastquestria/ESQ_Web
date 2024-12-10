@@ -853,37 +853,39 @@ section {
 
 /* Go To Album Section
 --------------------------------*/
-#go-to-album {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/go-to-album-bg.jpg) fixed center center;
+#sub_background {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/sub_background.jpg) fixed center center;
   background-size: cover;
   padding: 80px 0;
 }
 
 @media (max-width: 1024px) {
-  #go-to-album {
+  #sub_background {
     background-attachment: scroll;
   }
 }
 
-#go-to-album .cta-title {
+#sub_background .cta-title {
   color: #fff;
   font-size: 28px;
   font-weight: 700;
+  text-align:center;
 }
 
-#go-to-album .cta-text {
+#sub_background .cta-text {
   color: #fff;
+  text-align:center;
 }
 
 @media (min-width: 769px) {
-  #go-to-album .cta-btn-container {
+  #sub_background .cta-btn-container {
     display: flex;
     align-items: center;
     justify-content: flex-end;
   }
 }
 
-#go-to-album .cta-btn {
+#sub_background .cta-btn {
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
@@ -898,7 +900,7 @@ section {
   color: #fff;
 }
 
-#go-to-album .cta-btn:hover {
+#sub_background .cta-btn:hover {
   background: #949494;
   border: 2px solid #949494;
 }
