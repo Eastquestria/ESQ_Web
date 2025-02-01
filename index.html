@@ -22,7 +22,7 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+  
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -30,6 +30,10 @@
 </head>
 
 <body>
+  
+  <div class="loader">
+    <div class="spinner"></div>
+  </div>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
@@ -62,8 +66,15 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Eastquestria</h1>
-      <h2>东方小马国</h2>
+      <h1>
+        <div class="roll">
+          <div class="text-box visible" id="text1">东方小马国，宫商角徵羽</div>
+          <div class="text-box" id="text2">东方小马国，谐律褶叠霜</div>
+          <div class="text-box" id="text3">东方小马国，风铃松枝藏</div>
+          <div class="text-box" id="text4">东方小马国，青麒量鳞章</div>
+      </div>
+    </h1>
+      <h2 class="moveup">Eastquestria</h2>
     </div>
   </section><!-- End Hero Section -->
 
@@ -168,20 +179,20 @@
 
 
 
-    <!-- ======= Album Section ======= -->
+    <!-- ======= Album Section ======= 
     <section id="sub_background">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h3 class="cta-title">歌曲</h3>
           <p class="cta-text">我们发行的部分歌曲</p>
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="//music.163.com/outchain/player?type=2&id=2131282069&auto=0&height=66"></iframe>
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="//music.163.com/outchain/player?type=2&id=2057322796&auto=0&height=66"></iframe>
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="//music.163.com/outchain/player?type=2&id=1980493454&auto=0&height=66"></iframe>
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="//music.163.com/outchain/player?type=2&id=1971995694&auto=0&height=66"></iframe>
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="//music.163.com/outchain/player?type=2&id=2019537076&auto=0&height=66"></iframe>
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="//music.163.com/outchain/player?type=2&id=2131282126&auto=0&height=66"></iframe>
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="//music.163.com/outchain/player?type=2&id=2633831369&auto=0&height=66"></iframe>
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="//music.163.com/outchain/player?type=2&id=1980500890&auto=0&height=66"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="https://music.163.com/outchain/player?type=2&id=2131282069&auto=0&height=66"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="https://music.163.com/outchain/player?type=2&id=2057322796&auto=0&height=66"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="https://music.163.com/outchain/player?type=2&id=1980493454&auto=0&height=66"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="https://music.163.com/outchain/player?type=2&id=1971995694&auto=0&height=66"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="https://music.163.com/outchain/player?type=2&id=2019537076&auto=0&height=66"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="https://music.163.com/outchain/player?type=2&id=2131282126&auto=0&height=66"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="https://music.163.com/outchain/player?type=2&id=2633831369&auto=0&height=66"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=86 src="https://music.163.com/outchain/player?type=2&id=1980500890&auto=0&height=66"></iframe>
         </div>
       </div>
     </section><!-- End Album Section -->
@@ -298,6 +309,41 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/purecounter/purecounter.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script>
+    function rotateText() {
+        const texts = document.querySelectorAll('.text-box');
+        let current = 0;
+
+        function switchText() {
+            texts[current].classList.remove('visible');
+            current = (current + 1) % texts.length;
+
+            setTimeout(() => {
+                texts[current].classList.add('visible');
+            }, 50);
+        }
+
+        setInterval(switchText, 3000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const texts = document.querySelectorAll('.text-box');
+        texts.forEach(text => text.classList.remove('visible'));
+        texts[0].classList.add('visible');
+        rotateText();
+    });
+</script>
+<script>
+  window.addEventListener('load', function() {
+      const loader = document.querySelector('.loader');
+      
+      loader.classList.add('hidden');
+      
+      loader.addEventListener('transitionend', function() {
+          loader.style.display = 'none';
+      }, { once: true });
+  });
+</script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
