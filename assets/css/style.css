@@ -1195,7 +1195,9 @@ section {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(48, 48, 48, 0.938);
+  background: rgba(48, 48, 48, 0.425);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
   padding: 6px 0;
   text-align: center;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
