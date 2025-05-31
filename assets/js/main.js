@@ -219,4 +219,36 @@
     })
   });
 
+  document.addEventListener('DOMContentLoaded', function() {
+      const announcementBar = document.getElementById('announcement-bar');
+      const header = document.getElementById('header');
+      const closeBtn = document.querySelector('.close-btn');
+      
+      if (!announcementBar) {
+        header.classList.add('header-no-announcement');
+        return;
+      }
+      
+      let lastScrollTop = 0;
+      const barHeight = announcementBar.offsetHeight;
+      
+      window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+          announcementBar.classList.add('hide');
+        }
+
+        if (scrollTop < lastScrollTop && scrollTop < 120) {
+          announcementBar.classList.remove('hide');
+        }
+        
+        lastScrollTop = scrollTop;
+      });
+      
+      if (window.pageYOffset > 100) {
+        announcementBar.classList.add('hide');
+      }
+    });
+    
 })()
