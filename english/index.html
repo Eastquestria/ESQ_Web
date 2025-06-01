@@ -309,42 +309,6 @@
   <script src="../assets/vendor/php-email-form/validate.js"></script>
   <script src="../assets/vendor/purecounter/purecounter.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script>
-    function rotateText() {
-        const texts = document.querySelectorAll('.text-box');
-        let current = 0;
-
-        function switchText() {
-            texts[current].classList.remove('visible');
-            current = (current + 1) % texts.length;
-
-            setTimeout(() => {
-                texts[current].classList.add('visible');
-            }, 50);
-        }
-
-        setInterval(switchText, 3000);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const texts = document.querySelectorAll('.text-box');
-        texts.forEach(text => text.classList.remove('visible'));
-        texts[0].classList.add('visible');
-        rotateText();
-    });
-</script>
-<script>
-  window.addEventListener('load', function() {
-      const loader = document.querySelector('.loader');
-      
-      loader.classList.add('hidden');
-      
-      loader.addEventListener('transitionend', function() {
-          loader.style.display = 'none';
-      }, { once: true });
-  });
-</script>
-
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
 
