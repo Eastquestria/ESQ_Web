@@ -239,7 +239,7 @@
           announcementBar.classList.add('hide');
         }
 
-        if (scrollTop < lastScrollTop && scrollTop < 120) {
+        if (scrollTop < lastScrollTop && scrollTop < 102) {
           announcementBar.classList.remove('hide');
         }
         
