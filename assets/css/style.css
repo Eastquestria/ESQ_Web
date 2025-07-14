@@ -1285,3 +1285,37 @@ section {
 #header.header-no-announcement {
   top: 0;
 }
+
+/*--------------------------------------------------------------
+# Countdown Section
+--------------------------------------------------------------*/
+.countdown-section {
+  background: rgba(0, 0, 0, 0.062);
+  padding: 15px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.countdown-container {
+  text-align: center;
+  color: rgb(83, 83, 83);
+}
+
+.countdown-container h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.countdown-timer {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.countdown-timer span {
+  display: inline-block;
+  min-width: 40px;
+}
+
+.countdown-timer.critical {
+  color: #ff0000;
+}

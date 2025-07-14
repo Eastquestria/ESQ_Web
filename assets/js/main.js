@@ -289,3 +289,39 @@ window.addEventListener('load', function() {
 });
 
 })()
+
+/**
+ * Countdown Timer
+ */
+function updateCountdown() {
+  // 设置目标日期
+  const targetDate = new Date("2025-07-14T09:54:00").getTime();
+  const now = new Date().getTime();
+  const timeLeft = targetDate - now;
+
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+  document.getElementById("days").textContent = days.toString().padStart(2, '0');
+  document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+  document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+  document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+
+  const countdownTimer = document.querySelector('.countdown-timer');
+  if (timeLeft < 10000) { // 10秒
+    countdownTimer.classList.add('critical');
+  } else {
+    countdownTimer.classList.remove('critical');
+  }
+
+  if (timeLeft < 0) {
+    clearInterval(countdownInterval);
+    document.querySelector('.countdown-timer').innerHTML = "倒计时已结束";
+    return;
+  }
+}
+
+const countdownInterval = setInterval(updateCountdown, 1000);
+window.addEventListener('load', updateCountdown);
