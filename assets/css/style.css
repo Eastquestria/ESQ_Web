@@ -189,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sub-header-title {
-  max-width: 420px;
+  max-width: 350px;
   object-fit: contain;
 }
 
