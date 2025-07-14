@@ -251,21 +251,21 @@
     }
   });
 
-  function rotateText() {
-      const texts = document.querySelectorAll('.text-box');
-      let current = 0;
+  document.addEventListener('DOMContentLoaded', function() {
+    const texts = document.querySelectorAll('.text-box');
+    let current = 0;
 
-      function switchText() {
-          texts[current].classList.remove('visible');
-          current = (current + 1) % texts.length;
+    function switchText() {
+        texts[current].classList.remove('visible');
+        current = (current + 1) % texts.length;
 
-          setTimeout(() => {
-              texts[current].classList.add('visible');
-          }, 50);
-      }
+        setTimeout(() => {
+            texts[current].classList.add('visible');
+        }, 50);
+    }
 
-      setInterval(switchText, 3000);
-  }
+    setInterval(switchText, 3000);
+  })
 
 window.addEventListener('load', function() {
   const loader = document.querySelector('.loader');
