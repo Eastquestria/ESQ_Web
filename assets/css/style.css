@@ -164,7 +164,10 @@ h1, h2, h3, h4, h5, h6 {
 
 #header.header-scrolled {
   background: rgba(52, 59, 64, 0.9);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
   height: 70px;
+  top: 0;
   transition: all 0.5s;
 }
 
@@ -1223,8 +1226,6 @@ section {
   left: 0;
   right: 0;
   background: rgba(48, 48, 48, 0.425);
-  backdrop-filter: blur(10px) saturate(180%);
-  -webkit-backdrop-filter: blur(10px) saturate(180%);
   padding: 6px 0;
   text-align: center;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
@@ -1252,39 +1253,35 @@ section {
 # Announcement Bar
 --------------------------------------------------------------*/
 
-    #announcement-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(48, 48, 48, 0.425);
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      z-index: 9998;
-      transition: transform 0.6s ease;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+#announcement-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(48, 48, 48, 0.425);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 9998;
+  transition: transform 0.6s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#announcement-bar.hide {
+  transform: translateY(-100%);
+}
     
-    #announcement-bar.hide {
-      transform: translateY(-100%);
-    }
+#announcement-bar .content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  font-weight: 500;
+}
     
-    #announcement-bar .content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-      font-weight: 500;
-    }
-    
-    #header {
-      top: 42px;
-    }
-    
-    #header.header-no-announcement {
-      top: 0;
-    }
-    
-    #header.header-scrolled {
-      top: 0;
-    }
+#header {
+  top: 42px;
+}
+
+#header.header-no-announcement {
+  top: 0;
+}
