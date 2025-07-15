@@ -171,7 +171,7 @@
     fetch('https://api.i-meto.com/meting/api?server=netease&type=album&id=151306699')
     .then(response => {
       if (!response.ok) {
-        throw new Error('专辑拉取失败');
+        throw new Error('拉取失败');
       }
       return response.json();
     })
