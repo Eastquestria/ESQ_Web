@@ -163,16 +163,11 @@
   document.addEventListener('DOMContentLoaded', function() {
     const ap = new APlayer({
       container: document.getElementById('aplayer'),
-      fixed: false,
-      autoplay: false,
       audio: []
     });
 
     fetch('https://api.i-meto.com/meting/api?server=netease&type=album&id=187450612')
     .then(response => {
-      if (!response.ok) {
-        throw new Error('拉取失败');
-      }
       return response.json();
     })
     .then(songs => {
@@ -180,17 +175,13 @@
        
       songs.forEach(song => {
         ap.list.add({
-          name: song.title || '未知标题',
-          artist: song.author || '未知作者',
+          name: song.title,
+          artist: song.author,
           url: song.url,
           cover: 'assets/img/album/album-4.jpg',
-          lrc: song.lrc || ''
         });
       });
     })
-    .catch(error => {
-      console.error('加载音乐失败:', error);
-    });
   });
   </script>
 

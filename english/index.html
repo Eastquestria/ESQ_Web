@@ -274,16 +274,13 @@
   document.addEventListener('DOMContentLoaded', function() {
     const ap = new APlayer({
       container: document.getElementById('aplayer'),
-      fixed: false,
-      autoplay: false,
+      showlrc: true,
+      lrcType: 3,
       audio: []
     });
 
     fetch('https://api.i-meto.com/meting/api?server=netease&type=playlist&id=13980548342')
     .then(response => {
-      if (!response.ok) {
-        throw new Error('拉取失败');
-      }
       return response.json();
     })
     .then(songs => {
@@ -291,23 +288,27 @@
        
       songs.forEach(song => {
         ap.list.add({
-          name: song.title || '未知标题',
-          artist: song.author || '未知作者',
+          name: song.title,
+          artist: song.author,
           url: song.url,
           cover: song.pic,
-          lrc: song.lrc || ''
+          lrc: song.lrc
         });
       });
     })
-    .catch(error => {
-      console.error('加载音乐失败:', error);
-    });
   });
   </script>
   <style>
     #aplayer {
-        width: 600px;
+        width: 650px;
         margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      #aplayer {
+          width: 350px;
+          margin: 0 auto;
+      }
     }
   </style>
 
