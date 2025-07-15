@@ -26,6 +26,9 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- APlayer CSS -->
+  <link rel="stylesheet" href="assets/vendor/aplayer/APlayer.min.css">
+
 </head>
 
 <body>
@@ -97,6 +100,7 @@
 
                 <div class="swiper">
                   <img src="assets/img/album/album-2.jpg" width="600" height="600" style="border-radius: 10px;">
+                  <br><br><br>
                 </div>
 
               </div>
@@ -114,12 +118,7 @@
                 <li><a href="https://eqmemory.cn/68613.html"><strong>前往马国记忆资源贴</strong></a></li>
                 <li><a href="https://mlp.puudding.top/G4/%E5%90%8C%E4%BA%BA%E6%AD%8C%E6%9B%B2/Eastquestria/Vol.1%20Prelude%20Disc%20B"><strong>前往Pudding资源站下载</strong></a></li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <h2>专辑描述</h2>
-              <p>
-                国内首个综合性小马同人音乐专辑
-              </p>
+              <div id="aplayer"></div>
             </div>
           </div>
 
@@ -157,8 +156,44 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/purecounter/purecounter.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/aplayer/APlayer.min.js"></script>
+  <script src="assets/vendor/aplayer/Meting.min.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ap = new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: false,
+      autoplay: false,
+      audio: []
+    });
+
+    fetch('https://api.i-meto.com/meting/api?server=netease&type=album&id=151306699')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('专辑拉取失败');
+      }
+      return response.json();
+    })
+    .then(songs => {
+      ap.list.clear();
+       
+      songs.forEach(song => {
+        ap.list.add({
+          name: song.title || '未知标题',
+          artist: song.author || '未知作者',
+          url: song.url,
+          cover: 'assets/img/album/album-2.jpg',
+          lrc: song.lrc || ''
+        });
+      });
+    })
+    .catch(error => {
+      console.error('加载音乐失败:', error);
+    });
+  });
+  </script>
 
 </body>
 

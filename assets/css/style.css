@@ -1323,3 +1323,40 @@ section {
 .countdown-timer.critical {
   color: #ff0000;
 }
+
+/*--------------------------------------------------------------
+# APlayer Custom Styles
+--------------------------------------------------------------*/
+.aplayer {
+  font-family: "Open Sans", sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.aplayer .aplayer-info .aplayer-music .aplayer-title {
+  color: #666666;
+}
+
+.aplayer .aplayer-info .aplayer-music .aplayer-author {
+  color: #949494;
+}
+
+.aplayer .aplayer-list ol li {
+  border-top: 1px solid #eee;
+}
+
+.aplayer .aplayer-list ol li:hover {
+  background: #f7f7f7;
+}
+
+.aplayer .aplayer-list ol li.aplayer-list-light {
+  background: #f7f7f7;
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: auto;
+  right: 10px;
+  bottom: 70px;
+}
