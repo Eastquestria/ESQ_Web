@@ -26,6 +26,9 @@
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
 
+  <!-- APlayer CSS -->
+  <link rel="stylesheet" href="../assets/vendor/aplayer/APlayer.min.css">
+
 </head>
 
 <body>
@@ -114,12 +117,7 @@
                 <li><a href="https://eqmemory.cn/68629.html"><strong>EquestriaMemory resource page</strong></a></li>
                 <li><a href="https://mlp.puudding.top/G4/%E5%90%8C%E4%BA%BA%E6%AD%8C%E6%9B%B2/Eastquestria/Vol.2%20Legato"><strong>Pudding resource website</strong></a></li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <h2>Album about</h2>
-              <p>
-                The second album of the first comprehensive MLP music label in China
-              </p>
+              <div id="aplayer"></div>
             </div>
           </div>
 
@@ -157,8 +155,34 @@
   <script src="../assets/vendor/php-email-form/validate.js"></script>
   <script src="../assets/vendor/purecounter/purecounter.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/aplayer/APlayer.min.js"></script>
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ap = new APlayer({
+      container: document.getElementById('aplayer'),
+      audio: []
+    });
+
+    fetch('https://api.eastquestria.top/ncm/album/159349327')
+    .then(response => {
+      return response.json();
+    })
+    .then(songs => {
+      ap.list.clear();
+       
+      songs.forEach(song => {
+        ap.list.add({
+          name: song.title,
+          artist: song.author,
+          url: song.url,
+          cover: '../assets/img/album/album-3.jpg',
+        });
+      });
+    })
+  });
+  </script>
 
 </body>
 
