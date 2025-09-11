@@ -317,3 +317,14 @@ function updateCountdown() {
 
 const countdownInterval = setInterval(updateCountdown, 1000);
 window.addEventListener('load', updateCountdown);
+
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollingText = document.querySelector('.scrolling-footer-text');
+  if (scrollingText) {
+    // 强制浏览器重绘以立即启动动画
+    scrollingText.style.animation = 'none';
+    setTimeout(() => {
+      scrollingText.style.animation = '';
+    }, 10);
+  }
+});

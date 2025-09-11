@@ -1358,3 +1358,55 @@ section {
   right: 10px;
   bottom: 70px;
 }
+
+/*--------------------------------------------------------------
+# Footer Scrolling Text
+--------------------------------------------------------------*/
+.footer-scrolling-text-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.footer-scrolling-text {
+  position: absolute;
+  bottom: 30px;
+  white-space: nowrap;
+  font-size: 120px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  animation: scrollTextLarge 200s linear infinite;
+  width: max-content;
+}
+
+@keyframes scrollTextLarge {
+  0% {
+    transform: translateX(0vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+#footer {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .footer-scrolling-text {
+    font-size: 80px;
+    bottom: -25px;
+  }
+  
+  .footer-scrolling-text-container {
+    height: 80px;
+  }
+}
