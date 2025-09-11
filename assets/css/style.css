@@ -1382,7 +1382,7 @@ section {
   line-height: 0;
   margin: 0;
   padding: 0;
-  animation: scrollTextLarge 200s linear infinite;
+  animation: scrollTextLarge 600s linear infinite;
   width: max-content;
 }
 
@@ -1391,7 +1391,7 @@ section {
     transform: translateX(0vw);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-90%);
   }
 }
 
