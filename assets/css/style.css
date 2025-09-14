@@ -1402,11 +1402,6 @@ section {
 
 @media (max-width: 768px) {
   .footer-scrolling-text {
-    font-size: 80px;
-    bottom: -25px;
-  }
-  
-  .footer-scrolling-text-container {
-    height: 80px;
+    display: none;
   }
 }
