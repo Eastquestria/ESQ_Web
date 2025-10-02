@@ -299,18 +299,28 @@ function updateCountdown() {
   const now = new Date().getTime();
   const timeLeft = targetDate - now;
 
+  const daysElement = document.getElementById("days");
+  const hoursElement = document.getElementById("hours");
+  const minutesElement = document.getElementById("minutes");
+  const secondsElement = document.getElementById("seconds");
+  const countdownTimerElement = document.querySelector('.countdown-timer');
+
+  if (!daysElement || !hoursElement || !minutesElement || !secondsElement || !countdownTimerElement) {
+    return;
+  }
+
   const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
   const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-  document.getElementById("days").textContent = days.toString().padStart(2, '0');
-  document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-  document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-  document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+  daysElement.textContent = days.toString().padStart(2, '0');
+  hoursElement.textContent = hours.toString().padStart(2, '0');
+  minutesElement.textContent = minutes.toString().padStart(2, '0');
+  secondsElement.textContent = seconds.toString().padStart(2, '0');
 
   if (timeLeft < 0) {
-    document.querySelector('.countdown-timer').innerHTML = "倒计时已结束";
+    countdownTimerElement.innerHTML = "倒计时已结束";
     return;
   }
 }
