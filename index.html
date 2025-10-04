@@ -72,18 +72,63 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>
-        <div class="roll">
-          <div class="text-box visible" id="text1">东方小马国，宫商角徵羽</div>
-          <div class="text-box" id="text2">东方小马国，谐律褶叠霜</div>
+    
+    <div class="swiper hero-bg-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="hero-bg" style="background-image: url('assets/img/album/album-4-bg.png');"></div>
         </div>
-      </h1>
-        <h2 class="moveup">Eastquestria</h2>
+        <div class="swiper-slide">
+          <div class="hero-bg" style="background-image: url('assets/img/album/album-3-bg.png');"></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="hero-bg" style="background-image: url('assets/img/album/album-2-bg.png');"></div>
+        </div>
       </div>
     </div>
-    <div class="banner-subtext">
-      <p>头图图源：<a href="https://trixiebooru.org/images/2544057">https://trixiebooru.org/images/2544057</a></p>
+    
+    <div class="swiper hero-content-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="hero-content">
+            <div class="album-cover">
+              <img src="assets/img/album/album-4.jpg">
+            </div>
+            <div class="album-info">
+              <h2>测试1</h2>
+              <p>Line1<br>
+              Line2</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="swiper-slide">
+          <div class="hero-content">
+            <div class="album-cover">
+              <img src="assets/img/album/album-3.jpg">
+            </div>
+            <div class="album-info">
+              <h2>测试2</h2>
+              <p>Line1<br>
+              Line2</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="swiper-slide">
+          <div class="hero-content">
+            <div class="album-cover">
+              <img src="assets/img/album/album-2.jpg">
+            </div>
+            <div class="album-info">
+              <h2>测试3</h2>
+              <p>Line1<br>
+              Line2</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
     </div>
   </section><!-- End Hero Section -->
 
@@ -251,6 +296,41 @@
   <script src="assets/js/main.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
+    const bgSwiper = new Swiper('.hero-bg-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      speed: 1000,
+      allowTouchMove: false,
+    });
+
+    const contentSwiper = new Swiper('.hero-content-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      speed: 1000,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+    contentSwiper.on('slideChange', function () {
+      bgSwiper.slideToLoop(contentSwiper.realIndex, 1000);
+    });
+
     const ap = new APlayer({
       container: document.getElementById('aplayer'),
       showlrc: true,

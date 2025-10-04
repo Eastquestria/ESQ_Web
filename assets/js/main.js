@@ -295,7 +295,7 @@ window.addEventListener('load', function() {
  */
 function updateCountdown() {
   // 设置目标日期
-  const targetDate = new Date("2025-07-16T22:27:00").getTime();
+  const targetDate = new Date("2026-01-01T22:27:00").getTime();
   const now = new Date().getTime();
   const timeLeft = targetDate - now;
 
