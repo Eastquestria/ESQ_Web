@@ -17,8 +17,9 @@
   opacity: 1;
 }
 
-.moveup {
-  margin-top: -134px;
+.logo {
+  height: 40px;
+  width: auto;
 }
 /*--------------------------------------------------------------
 # Loader
