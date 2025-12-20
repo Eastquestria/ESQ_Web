@@ -1,3 +1,18 @@
+@font-face {
+    font-family: "OPPOSans-Ver2-Bold";
+    src: url(https://www.oppo.com/content/dam/statics/fonts/cn/OPPOSans3.0cn-Bold.woff2) format("woff2");
+    font-variation-settings: 'wght' 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'OPPOSans-Bold';
+    src: url(https://www.oppo.com/content/dam/statics/fonts/cn/OPPOSans-B.woff2) format("woff2");
+    font-style: normal;
+    font-display: swap
+}
+
 .roll {
   position: relative;
   width: 900px;
@@ -66,7 +81,7 @@
 body {
   background: #fff;
   color: #666666;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'OPPOSans-Ver2-Bold', 'OPPOSans-Bold', 'Arial', 'Microsoft YaHei', sans-serif;
 }
 
 a {
@@ -86,7 +101,6 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Poppins", sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
@@ -150,7 +164,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 32px;
   margin: 0;
   line-height: 1;
-  font-family: "Poppins", sans-serif;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -243,7 +256,6 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: "Poppins", sans-serif;
   color: #fff;
   font-size: 14px;
   padding: 0 4px;
@@ -530,10 +542,21 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+#hero .album-info span {
+  font-size: 14px;
+  color: #888;
+}
+
 #hero .album-info p {
   font-size: 18px;
   line-height: 1.6;
   margin: 0;
+}
+
+#hero .album-info img {
+  height: 50px;
+  width: auto;
+  margin-bottom: 30px;
 }
 
 #hero .btn-detail {
@@ -776,7 +799,6 @@ section {
 #facts .counters p {
   padding: 0;
   margin: 0 0 20px 0;
-  font-family: "Poppins", sans-serif;
   font-size: 14px;
 }
 
@@ -889,7 +911,6 @@ section {
 }
 
 #sub_background .cta-btn {
-  font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 16px;
@@ -1389,7 +1410,6 @@ section {
 # APlayer Custom Styles
 --------------------------------------------------------------*/
 .aplayer {
-  font-family: "Open Sans", sans-serif;
   margin: 20px auto;
   max-width: 1200px;
 }
