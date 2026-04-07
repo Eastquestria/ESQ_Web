@@ -49,7 +49,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(255, 255, 255);
+  background: #121212;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,18 +79,18 @@
 # General
 --------------------------------------------------------------*/
 body {
-  background: #fff;
-  color: #666666;
+  background: #121212;
+  color: #e0e0e0;
   font-family: 'OPPOSans-Ver2-Bold', 'OPPOSans-Bold', 'Arial', 'Microsoft YaHei', sans-serif;
 }
 
 a {
-  color: #949494;
+  color: #aaaaaa;
   text-decoration: none;
 }
 
 a:hover, a:active, a:focus {
-  color: #ececec;
+  color: #ffffff;
   outline: none;
   text-decoration: none;
 }
@@ -304,8 +304,8 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 99;
   opacity: 0;
   visibility: hidden;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  background: #1e1e1e;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
   transition: 0.3s;
 }
 
@@ -317,7 +317,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 20px;
   font-size: 14px;
   text-transform: none;
-  color: #666666;
+  color: #e0e0e0;
 }
 
 .navbar .dropdown ul a i {
@@ -325,7 +325,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  color: #949494;
+  color: #ffffff;
 }
 
 .navbar .dropdown:hover > ul {
@@ -384,7 +384,7 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(77, 77, 77, 0.9);
+  background: rgba(0, 0, 0, 0.9);
   transition: 0.3s;
   z-index: 999;
 }
@@ -403,7 +403,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 15px;
   left: 15px;
   padding: 10px 0;
-  background-color: #fff;
+  background-color: #1e1e1e;
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -419,11 +419,11 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-mobile a {
   padding: 10px 20px;
   font-size: 15px;
-  color: #666666;
+  color: #e0e0e0;
 }
 
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #949494;
+  color: #ffffff;
 }
 
 .navbar-mobile .getstarted {
@@ -438,8 +438,8 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 99;
   opacity: 1;
   visibility: visible;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  background: #2c2c2c;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
 }
 
 .navbar-mobile .dropdown ul li {
@@ -448,6 +448,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-mobile .dropdown ul a {
   padding: 10px 20px;
+  color: #e0e0e0;
 }
 
 .navbar-mobile .dropdown ul a i {
@@ -455,7 +456,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
-  color: #949494;
+  color: #ffffff;
 }
 
 .navbar-mobile .dropdown > .dropdown-active {
@@ -632,7 +633,7 @@ section {
 --------------------------------*/
 .section-header .section-title {
   font-size: 32px;
-  color: #111;
+  color: #fff;
   text-transform: uppercase;
   text-align: center;
   font-weight: 700;
@@ -642,7 +643,7 @@ section {
 .section-header .section-description {
   text-align: center;
   padding-bottom: 40px;
-  color: #999;
+  color: #bbb;
 }
 
 /*--------------------------------------------------------------
@@ -654,7 +655,7 @@ section {
 
 .breadcrumbs {
   padding: 20px 0;
-  background-color: whitesmoke;
+  background-color: #1e1e1e;
   min-height: 40px;
 }
 
@@ -705,7 +706,7 @@ section {
 /* About Us Section
 --------------------------------*/
 #about {
-  background: #fff;
+  background: #121212;
   padding: 80px 0;
 }
 
@@ -716,11 +717,11 @@ section {
 }
 
 #about .about-container .content {
-  background: #fff;
+  background: #121212;
 }
 
 #about .about-container .title {
-  color: #333;
+  color: #fff;
   font-weight: 700;
   font-size: 32px;
 }
@@ -740,14 +741,14 @@ section {
 }
 
 #about .about-container .icon-box {
-  background: #fff;
+  background: #121212;
   background-size: cover;
   padding: 0 0 30px 0;
 }
 
 #about .about-container .icon-box .icon {
   float: left;
-  background: #fff;
+  background: #121212;
   width: 64px;
   height: 64px;
   display: flex;
@@ -774,7 +775,7 @@ section {
 }
 
 #about .about-container .icon-box .title a {
-  color: #111;
+  color: #fff;
 }
 
 #about .about-container .icon-box .description {
@@ -786,7 +787,7 @@ section {
 /* Facts Section
 --------------------------------*/
 #facts {
-  background: #f7f7f7;
+  background: #1a1a1a;
   padding: 80px 0 60px 0;
 }
 
@@ -805,7 +806,7 @@ section {
 /* Services Section
 --------------------------------*/
 #services {
-  background: #fff;
+  background: #121212;
   background-size: cover;
   padding: 80px 0 60px 0;
 }
@@ -814,10 +815,10 @@ section {
   padding: 50px 20px;
   margin-bottom: 50px;
   text-align: center;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #333;
   height: 200px;
   position: relative;
-  background: #fafafa;
+  background: #1a1a1a;
 }
 
 #services .icon {
@@ -826,7 +827,7 @@ section {
   left: calc(50% - 36px);
   transition: 0.2s;
   border-radius: 50%;
-  border: 6px solid #fff;
+  border: 6px solid #121212;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -834,7 +835,7 @@ section {
   text-align: center;
   width: 72px;
   height: 72px;
-  background: #949494;
+  background: #444;
 }
 
 #services .icon a {
@@ -848,7 +849,7 @@ section {
 }
 
 #services .box:hover .icon {
-  background: #fff;
+  background: #121212;
   border: 2px solid #949494;
 }
 
@@ -868,7 +869,7 @@ section {
 }
 
 #services .title a {
-  color: #111;
+  color: #fff;
 }
 
 #services .description {
@@ -932,7 +933,7 @@ section {
 /* Portfolio Section
 --------------------------------*/
 #portfolio {
-  background: #f7f7f7;
+  background: #1a1a1a;
   padding: 80px 0;
 }
 
@@ -951,10 +952,10 @@ section {
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
-  color: #666666;
+  color: #e0e0e0;
   margin: 0 5px 10px 5px;
   transition: all ease-in-out 0.3s;
-  background: white;
+  background: #2c2c2c;
   border-radius: 4px;
 }
 
@@ -1047,7 +1048,7 @@ section {
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: #fff;
+  background-color: #333;
   opacity: 1;
   border: 1px solid #949494;
 }
@@ -1065,7 +1066,7 @@ section {
   font-weight: 700;
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #333;
 }
 
 .portfolio-details .portfolio-info ul {
@@ -1095,7 +1096,7 @@ section {
 /* Team Section
 --------------------------------*/
 #team {
-  background: #fff;
+  background: #121212;
   padding: 80px 0 60px 0;
 }
 
@@ -1146,7 +1147,7 @@ section {
 /* Contact Section
 --------------------------------*/
 #contact {
-  background: #f7f7f7;
+  background: #1a1a1a;
   padding: 80px 0 40px 0;
 }
 
@@ -1156,7 +1157,7 @@ section {
 }
 
 #contact .info {
-  color: #333333;
+  color: #e0e0e0;
 }
 
 #contact .info i {
@@ -1229,7 +1230,7 @@ section {
 
 #contact .php-email-form .loading {
   display: none;
-  background: #fff;
+  background: #1a1a1a;
   text-align: center;
   padding: 15px;
 }
@@ -1251,6 +1252,9 @@ section {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
+  background: #2c2c2c;
+  color: #fff;
+  border: 1px solid #444;
 }
 
 #contact .php-email-form input::focus, #contact .php-email-form textarea::focus {
@@ -1387,7 +1391,7 @@ section {
 
 .countdown-container {
   text-align: center;
-  color: rgb(83, 83, 83);
+  color: rgb(200, 200, 200);
 }
 
 .countdown-container h3 {
@@ -1412,8 +1416,9 @@ section {
   margin: 20px auto;
   max-width: 1200px;
   box-shadow: none !important;
-  border: 1px solid #f0f0f0;
+  border: 1px solid #333333;
   border-radius: 10px !important;
+  background: #1e1e1e !important;
 }
 
 .aplayer .aplayer-pic {
@@ -1421,23 +1426,23 @@ section {
 }
 
 .aplayer .aplayer-info .aplayer-music .aplayer-title {
-  color: #666666;
+  color: #e0e0e0;
 }
 
 .aplayer .aplayer-info .aplayer-music .aplayer-author {
-  color: #949494;
+  color: #aaaaaa;
 }
 
 .aplayer .aplayer-list ol li {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #333333;
 }
 
 .aplayer .aplayer-list ol li:hover {
-  background: #f7f7f7;
+  background: #2c2c2c;
 }
 
 .aplayer .aplayer-list ol li.aplayer-list-light {
-  background: #f7f7f7;
+  background: #2c2c2c;
 }
 
 .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
