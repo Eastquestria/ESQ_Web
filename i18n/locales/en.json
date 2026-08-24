@@ -1,0 +1,171 @@
+{
+  "language": {
+    "switchToEnglish": "Switch to English",
+    "switchToChinese": "Switch to Chinese"
+  },
+  "common": {
+    "home": "Home",
+    "albums": "Albums",
+    "links": "Links",
+    "bilibili": "Bilibili",
+    "neteaseMusic": "NetEase Music",
+    "equestriaMemory": "EquestriaMemory",
+    "qqGroup": "QQ Group",
+    "viewDetails": "View details",
+    "listenOnNetease": "Listen on NetEase Music",
+    "albumCover": "Album cover for {title}",
+    "breadcrumbs": "Breadcrumbs",
+    "mainNavigation": "Main navigation",
+    "pageLoading": "Loading page",
+    "toggleNavigation": "Toggle navigation menu",
+    "backToTop": "Back to top"
+  },
+  "footer": {
+    "marquee": "Eastquestria · Chinese MLP Music ·",
+    "links": "External links",
+    "equestriaMemory": "EquestriaMemory",
+    "equestriaCn": "EquestriaCN"
+  },
+  "player": {
+    "loading": "Loading playlist…",
+    "error": "The playlist is temporarily unavailable. Please try again later."
+  },
+  "home": {
+    "hero": {
+      "label": "Featured album carousel",
+      "goToSlide": "Go to album {number}",
+      "slides": {
+        "album5": {
+          "title": "Eastquestria Vol.4 Caprice",
+          "description": "Gather this New Year's Day and reunite in Eastquestria! On New Year's Day 2026, we released 15 original My Little Pony fan tracks created by 15 artists."
+        },
+        "indie1": {
+          "title": "10kmoonz",
+          "subtitle": "From Vol.4 Caprice",
+          "description": "MKAO Ind.'s pioneering album “10kmoonz” embraces high-energy Hyperpop and delivers an experience as bright as ten thousand moons!"
+        },
+        "indie2": {
+          "title": "众生为爱而生",
+          "subtitle": "From Vol.4 Caprice",
+          "description": "This pioneering album by An Qiran unfolds an intertwined story through a hip-hop track. Special thanks to forgeey for the artwork."
+        },
+        "snowdrop": {
+          "title": "Snowdrop",
+          "description": "A Snowdrop special album released by the Chinese MLP music label Eastquestria."
+        },
+        "album4": {
+          "title": "Eastquestria Vol.3 Rhapsody",
+          "description": "The third album from China's first comprehensive MLP fan music label."
+        }
+      }
+    },
+    "about": {
+      "title": "About",
+      "line1": "Eastquestria, or ESQ, is a Chinese My Little Pony fan music collective.",
+      "line2": "We provide Chinese fan music creators with convenient and efficient music distribution services."
+    },
+    "songs": {
+      "title": "Songs",
+      "description": "Some of the songs we have released"
+    },
+    "team": {
+      "title": "Team",
+      "description": "Main members of ESQ",
+      "members": {
+        "jrtos": {
+          "name": "Jrtos",
+          "role": "One of ESQ's founders"
+        },
+        "cory": {
+          "name": "Cory",
+          "role": "One of ESQ's founders"
+        },
+        "kirin": {
+          "name": "Misaka Meiki",
+          "role": "Kirin, present!"
+        },
+        "fengqi": {
+          "name": "Fengqi Yuluo",
+          "role": "Copywriting expert"
+        }
+      }
+    },
+    "stats": {
+      "title": "Stats",
+      "description": "Eastquestria by the numbers",
+      "albums": "Albums released",
+      "songs": "Songs released",
+      "plays": "Total plays",
+      "gods": "Resident legends"
+    }
+  },
+  "albums": {
+    "archive": {
+      "title": "Albums",
+      "description": "All the albums we have released so far",
+      "filterLabel": "Filter albums by category",
+      "all": "All albums",
+      "regular": "Regular albums",
+      "special": "Special albums"
+    },
+    "detail": {
+      "releaseDate": "Date",
+      "submissions": "Tracks",
+      "netease": "NetEase Music album page",
+      "memory": "EquestriaMemory resource page",
+      "download": "Download from Pudding",
+      "notFound": "Album not found"
+    },
+    "items": {
+      "album-5": {
+        "title": "Eastquestria Vol.4 Caprice",
+        "listTitle": "Special - Eastquestria Vol.4 Caprice",
+        "description": "The fourth album from China's first comprehensive MLP fan music label"
+      },
+      "album-tb-3": {
+        "title": "Fallout equestria",
+        "listTitle": "Special - Fallout equestria",
+        "description": "A Fallout Equestria special album"
+      },
+      "album-tb-2": {
+        "title": "FPR 001",
+        "listTitle": "Special - FPR 001",
+        "description": "For Pony Raver “FPR” 001"
+      },
+      "album-4": {
+        "title": "Eastquestria Vol.3 Rhapsody",
+        "listTitle": "Eastquestria Vol.3 Rhapsody",
+        "description": "The third album from China's first comprehensive MLP fan music label"
+      },
+      "album-tb-1": {
+        "title": "Snowdrop",
+        "listTitle": "Special - Snowdrop",
+        "description": "A Snowdrop special album"
+      },
+      "album-3": {
+        "title": "Eastquestria Vol.2 Legato",
+        "listTitle": "Eastquestria Vol.2 Legato",
+        "description": "The second album from China's first comprehensive MLP fan music label"
+      },
+      "album-2": {
+        "title": "Eastquestria Vol.1 Prelude Disc B",
+        "listTitle": "Eastquestria Vol.1 Prelude Disc B",
+        "description": "China's first comprehensive MLP fan music album"
+      },
+      "album-1": {
+        "title": "Eastquestria Vol.1 Prelude Disc A",
+        "listTitle": "Eastquestria Vol.1 Prelude Disc A",
+        "description": "China's first comprehensive MLP fan music album"
+      }
+    }
+  },
+  "seo": {
+    "siteTitle": "Eastquestria - Home",
+    "homeTitle": "Eastquestria - Home",
+    "homeDescription": "Eastquestria is a Chinese My Little Pony fan music collective dedicated to helping fan creators distribute their music.",
+    "homeOgDescription": "A Chinese My Little Pony fan music collective.",
+    "albumsTitle": "Eastquestria - Albums",
+    "albumsDescription": "Browse every regular and special album released by Eastquestria.",
+    "albumsOgDescription": "The Eastquestria album catalogue."
+  }
+}

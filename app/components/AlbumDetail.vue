@@ -5,6 +5,9 @@ const props = defineProps<{
   album: Album
 }>()
 
+const { t } = useI18n()
+const localePath = useLocalePath()
+const albumTitle = computed(() => t(`albums.items.${props.album.slug}.title`))
 const neteaseUrl = computed(() => `https://music.163.com/album?id=${props.album.neteaseAlbumId}`)
 const playlistUrl = computed(() => `https://api.eqad.fun/ncm/album/${props.album.neteaseAlbumId}`)
 </script>
@@ -14,26 +17,26 @@ const playlistUrl = computed(() => `https://api.eqad.fun/ncm/album/${props.album
     <section
       class="album-banner"
       :style="{ backgroundImage: `url(${album.background})` }"
-      :aria-label="album.title"
+      :aria-label="albumTitle"
     >
       <h1 v-if="album.titleImage" class="album-banner__image-heading">
         <img
           :src="album.titleImage"
-          :alt="album.title"
+          :alt="albumTitle"
           class="album-banner__title-image"
         >
       </h1>
-      <h1 v-else class="album-banner__title">{{ album.title }}</h1>
+      <h1 v-else class="album-banner__title">{{ albumTitle }}</h1>
     </section>
 
     <main id="main">
-      <nav class="album-breadcrumbs" aria-label="面包屑导航">
+      <nav class="album-breadcrumbs" :aria-label="t('common.breadcrumbs')">
         <div class="container album-breadcrumbs__inner">
-          <h2>{{ album.title }}</h2>
+          <h2>{{ albumTitle }}</h2>
           <ol>
-            <li><NuxtLink to="/">主页</NuxtLink></li>
-            <li><NuxtLink to="/album">专辑</NuxtLink></li>
-            <li aria-current="page">{{ album.title }}</li>
+            <li><NuxtLink :to="localePath('/')">{{ t('common.home') }}</NuxtLink></li>
+            <li><NuxtLink :to="localePath('/album')">{{ t('common.albums') }}</NuxtLink></li>
+            <li aria-current="page">{{ albumTitle }}</li>
           </ol>
         </div>
       </nav>
@@ -43,21 +46,21 @@ const playlistUrl = computed(() => `https://api.eqad.fun/ncm/album/${props.album
           <div class="album-details__artwork">
             <img
               :src="album.cover"
-              :alt="`${album.title}专辑封面`"
+              :alt="t('common.albumCover', { title: albumTitle })"
               width="600"
               height="600"
             >
           </div>
 
           <aside class="album-details__info">
-            <h2>{{ album.title }}</h2>
+            <h2>{{ albumTitle }}</h2>
             <dl class="album-details__metadata">
               <div>
-                <dt>发行时间</dt>
+                <dt>{{ t('albums.detail.releaseDate') }}</dt>
                 <dd>{{ album.releasedAt }}</dd>
               </div>
               <div>
-                <dt>投稿数</dt>
+                <dt>{{ t('albums.detail.submissions') }}</dt>
                 <dd>{{ album.submissions }}</dd>
               </div>
             </dl>
@@ -65,19 +68,19 @@ const playlistUrl = computed(() => `https://api.eqad.fun/ncm/album/${props.album
             <ul class="album-details__links">
               <li>
                 <a :href="neteaseUrl" target="_blank" rel="noreferrer">
-                  前往网易云专辑页
+                  {{ t('albums.detail.netease') }}
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8m-6 0h6v6" /></svg>
                 </a>
               </li>
               <li>
                 <a :href="album.memoryUrl" target="_blank" rel="noreferrer">
-                  前往马国记忆资源贴
+                  {{ t('albums.detail.memory') }}
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8m-6 0h6v6" /></svg>
                 </a>
               </li>
               <li>
                 <a :href="album.downloadUrl" target="_blank" rel="noreferrer">
-                  前往 Pudding 资源站下载
+                  {{ t('albums.detail.download') }}
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8m-6 0h6v6" /></svg>
                 </a>
               </li>

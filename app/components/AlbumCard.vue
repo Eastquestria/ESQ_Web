@@ -4,14 +4,17 @@ import type { Album } from '~/data/albums'
 defineProps<{
   album: Album
 }>()
+
+const { t } = useI18n()
+const localePath = useLocalePath()
 </script>
 
 <template>
   <article class="album-card">
-    <NuxtLink :to="`/album/${album.slug}`" class="album-card__link">
+    <NuxtLink :to="localePath(`/album/${album.slug}`)" class="album-card__link">
       <img
         :src="album.cover"
-        :alt="`${album.title}专辑封面`"
+        :alt="t('common.albumCover', { title: t(`albums.items.${album.slug}.title`) })"
         class="album-card__cover"
         width="600"
         height="600"
@@ -19,8 +22,8 @@ defineProps<{
       >
       <div class="album-card__info">
         <div>
-          <h2>{{ album.listTitle }}</h2>
-          <p>{{ album.description }}</p>
+          <h2>{{ t(`albums.items.${album.slug}.listTitle`) }}</h2>
+          <p>{{ t(`albums.items.${album.slug}.description`) }}</p>
         </div>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M8 16 16 8m-6 0h6v6" />

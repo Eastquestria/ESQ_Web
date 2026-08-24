@@ -41,6 +41,8 @@ const props = withDefaults(defineProps<{
   showLyrics: false,
 })
 
+const { t } = useI18n()
+
 useHead({
   link: [
     { rel: 'stylesheet', href: '/vendor/aplayer/APlayer.min.css' },
@@ -48,7 +50,7 @@ useHead({
 })
 
 const playerContainer = ref<HTMLElement | null>(null)
-const playerStatus = ref('正在加载歌单…')
+const playerStatus = ref<'loading' | 'error' | null>('loading')
 const hasError = ref(false)
 
 let player: APlayerInstance | undefined
@@ -142,14 +144,14 @@ onMounted(async () => {
       })
     })
 
-    playerStatus.value = ''
+    playerStatus.value = null
   } catch (error) {
     if (error instanceof DOMException && error.name === 'AbortError') {
       return
     }
 
     hasError.value = true
-    playerStatus.value = '歌单暂时无法加载，请稍后再试。'
+    playerStatus.value = 'error'
     console.error(error)
   }
 })
@@ -168,7 +170,7 @@ onBeforeUnmount(() => {
       class="album-player__status"
       :class="{ 'album-player__status--error': hasError }"
       aria-live="polite"
-    >{{ playerStatus }}</p>
+    >{{ t(`player.${playerStatus}`) }}</p>
   </div>
 </template>
 

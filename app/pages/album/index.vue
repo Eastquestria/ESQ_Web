@@ -3,34 +3,36 @@ import { albums, type AlbumCategory } from '~/data/albums'
 
 type AlbumFilter = 'all' | AlbumCategory
 
-const filters: { value: AlbumFilter, label: string }[] = [
-  { value: 'all', label: '全部专辑' },
-  { value: 'regular', label: '常规专辑' },
-  { value: 'special', label: '特别专辑' },
+const filters: { value: AlbumFilter, key: string }[] = [
+  { value: 'all', key: 'all' },
+  { value: 'regular', key: 'regular' },
+  { value: 'special', key: 'special' },
 ]
 
+const { t } = useI18n()
+const localePath = useLocalePath()
 const activeFilter = ref<AlbumFilter>('all')
 const filteredAlbums = computed(() => activeFilter.value === 'all'
   ? albums
   : albums.filter(album => album.category === activeFilter.value))
 
 useSeoMeta({
-  title: 'Eastquestria - 专辑',
-  description: '浏览 Eastquestria 东方小马国迄今发行的所有常规专辑与特别专辑。',
-  ogTitle: 'Eastquestria - 专辑',
-  ogDescription: 'Eastquestria 东方小马国专辑目录。',
+  title: () => t('seo.albumsTitle'),
+  description: () => t('seo.albumsDescription'),
+  ogTitle: () => t('seo.albumsTitle'),
+  ogDescription: () => t('seo.albumsOgDescription'),
   ogImage: albums[0]?.cover,
 })
 </script>
 
 <template>
   <main id="main" class="album-archive-page">
-    <nav class="archive-breadcrumbs" aria-label="面包屑导航">
+    <nav class="archive-breadcrumbs" :aria-label="t('common.breadcrumbs')">
       <div class="container archive-breadcrumbs__inner">
         <span aria-hidden="true" />
         <ol>
-          <li><NuxtLink to="/">主页</NuxtLink></li>
-          <li aria-current="page">专辑</li>
+          <li><NuxtLink :to="localePath('/')">{{ t('common.home') }}</NuxtLink></li>
+          <li aria-current="page">{{ t('common.albums') }}</li>
         </ol>
       </div>
     </nav>
@@ -38,11 +40,11 @@ useSeoMeta({
     <section id="portfolio" class="album-archive">
       <div class="container">
         <header class="section-header">
-          <h1 class="section-title">专辑</h1>
-          <p class="section-description">这是我们迄今为止发行的所有专辑</p>
+          <h1 class="section-title">{{ t('albums.archive.title') }}</h1>
+          <p class="section-description">{{ t('albums.archive.description') }}</p>
         </header>
 
-        <div class="album-filters" aria-label="专辑分类筛选">
+        <div class="album-filters" :aria-label="t('albums.archive.filterLabel')">
           <button
             v-for="filter in filters"
             :key="filter.value"
@@ -50,7 +52,7 @@ useSeoMeta({
             :class="{ 'is-active': activeFilter === filter.value }"
             :aria-pressed="activeFilter === filter.value"
             @click="activeFilter = filter.value"
-          >{{ filter.label }}</button>
+          >{{ t(`albums.archive.${filter.key}`) }}</button>
         </div>
 
         <TransitionGroup name="album-grid" tag="div" class="album-grid">

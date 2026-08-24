@@ -1,9 +1,11 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 useSeoMeta({
-  title: 'Eastquestria - 东方小马国',
-  description: 'Eastquestria 东方小马国是中国彩虹小马同人音乐社团，致力于为同人音乐创作者提供音乐发行服务。',
-  ogTitle: 'Eastquestria - 东方小马国',
-  ogDescription: '中国彩虹小马同人音乐社团。',
+  title: () => t('seo.homeTitle'),
+  description: () => t('seo.homeDescription'),
+  ogTitle: () => t('seo.homeTitle'),
+  ogDescription: () => t('seo.homeOgDescription'),
   ogImage: '/assets/img/album/album-5-bg.png',
 })
 </script>

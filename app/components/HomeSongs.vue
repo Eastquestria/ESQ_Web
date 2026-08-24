@@ -1,9 +1,13 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <section id="sub_background" class="songs-section">
     <div class="container">
       <header class="section-header">
-        <h2 class="songs-section__title">歌曲</h2>
-        <p class="songs-section__description">我们发行的部分歌曲</p>
+        <h2 class="songs-section__title">{{ t('home.songs.title') }}</h2>
+        <p class="songs-section__description">{{ t('home.songs.description') }}</p>
       </header>
 
       <div class="songs-section__player-shell">

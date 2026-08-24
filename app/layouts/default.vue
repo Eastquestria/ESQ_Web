@@ -4,16 +4,31 @@ const isMenuOpen = ref(false)
 const isLinksOpen = ref(false)
 const isPageReady = ref(false)
 const route = useRoute()
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const routeBaseName = useRouteBaseName()
+const switchLocalePath = useSwitchLocalePath()
 
-const isHomeRoute = computed(() => route.path === '/')
-const isAlbumRoute = computed(() => route.path === '/album' || route.path.startsWith('/album/'))
-const isAlbumIndexRoute = computed(() => route.path === '/album' || route.path === '/album/')
+const baseRouteName = computed(() => String(routeBaseName(route) ?? ''))
+const isHomeRoute = computed(() => baseRouteName.value === 'index')
+const isAlbumRoute = computed(() => baseRouteName.value === 'album' || baseRouteName.value.startsWith('album-'))
+const isAlbumIndexRoute = computed(() => baseRouteName.value === 'album')
 const hasSolidHeader = computed(() => isScrolled.value || isAlbumIndexRoute.value)
+const homePath = computed(() => `${localePath('/')}#hero`)
+const albumPath = computed(() => localePath('/album'))
+const targetLocale = computed(() => locale.value === 'zh' ? 'en' : 'zh')
+const languageSwitchPath = computed(() => switchLocalePath(targetLocale.value) || localePath('/', targetLocale.value))
+const languageSwitchText = computed(() => targetLocale.value === 'en' ? 'EN' : '中')
+const languageSwitchLabel = computed(() => t(
+  targetLocale.value === 'en'
+    ? 'language.switchToEnglish'
+    : 'language.switchToChinese',
+))
 
-const scrollingText = Array.from(
+const scrollingText = computed(() => Array.from(
   { length: 12 },
-  () => 'Eastquestria · 東方小馬國 ·',
-).join(' ')
+  () => t('footer.marquee'),
+).join(' '))
 
 let readyTimer: number | undefined
 
@@ -56,7 +71,7 @@ onBeforeUnmount(() => {
       v-if="!isPageReady"
       class="page-loader"
       role="status"
-      aria-label="页面加载中"
+      :aria-label="t('common.pageLoading')"
     >
       <img src="/assets/img/favicon.png" alt="" class="page-loader__mark">
     </div>
@@ -71,7 +86,7 @@ onBeforeUnmount(() => {
     }"
   >
     <div class="container site-header__inner">
-      <NuxtLink to="/" class="site-logo" aria-label="Eastquestria 首页" @click="closeNavigation">
+      <NuxtLink :to="localePath('/')" class="site-logo" :aria-label="`Eastquestria ${t('common.home')}`" @click="closeNavigation">
         <img src="/assets/img/favicon.png" alt="" width="40" height="40">
       </NuxtLink>
 
@@ -79,24 +94,24 @@ onBeforeUnmount(() => {
         id="site-navigation"
         class="site-navigation"
         :class="{ 'site-navigation--open': isMenuOpen }"
-        aria-label="主导航"
+        :aria-label="t('common.mainNavigation')"
       >
         <ul class="site-navigation__list">
           <li>
             <NuxtLink
-              to="/#hero"
+              :to="homePath"
               class="site-navigation__link"
               :class="{ 'is-active': isHomeRoute }"
               @click="closeNavigation"
-            >主页</NuxtLink>
+            >{{ t('common.home') }}</NuxtLink>
           </li>
           <li>
             <NuxtLink
-              to="/album"
+              :to="albumPath"
               class="site-navigation__link"
               :class="{ 'is-active': isAlbumRoute }"
               @click="closeNavigation"
-            >专辑</NuxtLink>
+            >{{ t('common.albums') }}</NuxtLink>
           </li>
           <li class="site-navigation__dropdown" :class="{ 'is-open': isLinksOpen }">
             <button
@@ -105,20 +120,27 @@ onBeforeUnmount(() => {
               :aria-expanded="isLinksOpen"
               @click="isLinksOpen = !isLinksOpen"
             >
-              其他链接
+              {{ t('common.links') }}
               <svg viewBox="0 0 16 16" aria-hidden="true">
                 <path d="m3.5 6 4.5 4 4.5-4" />
               </svg>
             </button>
             <ul class="site-navigation__dropdown-menu">
-              <li><a href="https://space.bilibili.com/1625041793" target="_blank" rel="noreferrer">B站</a></li>
-              <li><a href="https://music.163.com/#/artist?id=53643668" target="_blank" rel="noreferrer">网易云</a></li>
-              <li><a href="https://eqmemory.cn/author/2334" target="_blank" rel="noreferrer">马国记忆</a></li>
-              <li><a href="https://qm.qq.com/q/6EmhGWXtg6" target="_blank" rel="noreferrer">加入 QQ 群聊</a></li>
+              <li><a href="https://space.bilibili.com/1625041793" target="_blank" rel="noreferrer">{{ t('common.bilibili') }}</a></li>
+              <li><a href="https://music.163.com/#/artist?id=53643668" target="_blank" rel="noreferrer">{{ t('common.neteaseMusic') }}</a></li>
+              <li><a href="https://eqmemory.cn/author/2334" target="_blank" rel="noreferrer">{{ t('common.equestriaMemory') }}</a></li>
+              <li><a href="https://qm.qq.com/q/6EmhGWXtg6" target="_blank" rel="noreferrer">{{ t('common.qqGroup') }}</a></li>
             </ul>
           </li>
           <li>
-            <a class="site-navigation__link" href="/english" @click="closeNavigation"><strong>EN</strong></a>
+            <NuxtLink
+              :to="languageSwitchPath"
+              class="site-navigation__link"
+              :hreflang="targetLocale === 'en' ? 'en-US' : 'zh-CN'"
+              :aria-label="languageSwitchLabel"
+              :title="languageSwitchLabel"
+              @click="closeNavigation"
+            ><strong>{{ languageSwitchText }}</strong></NuxtLink>
           </li>
         </ul>
       </nav>
@@ -129,7 +151,7 @@ onBeforeUnmount(() => {
         :class="{ 'menu-toggle--open': isMenuOpen }"
         :aria-expanded="isMenuOpen"
         aria-controls="site-navigation"
-        aria-label="切换导航菜单"
+        :aria-label="t('common.toggleNavigation')"
         @click="isMenuOpen = !isMenuOpen"
       >
         <span />
@@ -154,13 +176,13 @@ onBeforeUnmount(() => {
         width="40"
         height="40"
       >
-      <p class="site-footer__label">友情外链</p>
+      <p class="site-footer__label">{{ t('footer.links') }}</p>
       <p class="site-footer__links">
-        <a href="https://eqmemory.cn/" target="_blank" rel="noreferrer">马国记忆</a>
+        <a href="https://eqmemory.cn/" target="_blank" rel="noreferrer">{{ t('footer.equestriaMemory') }}</a>
         <span aria-hidden="true"> - </span>
         <a href="https://voltexpixel.com/" target="_blank" rel="noreferrer">Voltex Pixel</a>
         <span aria-hidden="true"> - </span>
-        <a href="https://www.equestriacn.com/" target="_blank" rel="noreferrer">小马中国</a>
+        <a href="https://www.equestriacn.com/" target="_blank" rel="noreferrer">{{ t('footer.equestriaCn') }}</a>
         <span aria-hidden="true"> - </span>
         <a href="https://mlp.puudding.top/" target="_blank" rel="noreferrer">Pudding</a>
       </p>
@@ -177,7 +199,7 @@ onBeforeUnmount(() => {
     type="button"
     class="back-to-top"
     :class="{ 'back-to-top--visible': isScrolled }"
-    aria-label="返回顶部"
+    :aria-label="t('common.backToTop')"
     @click="scrollToTop"
   >
     <svg viewBox="0 0 24 24" aria-hidden="true">

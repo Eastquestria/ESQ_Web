@@ -6,21 +6,22 @@ definePageMeta({
 })
 
 const route = useRoute()
+const { t } = useI18n()
 const routeSlug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
 const album = getAlbumBySlug(routeSlug ?? '')
 
 if (!album) {
   throw createError({
     statusCode: 404,
-    statusMessage: '未找到该专辑',
+    statusMessage: t('albums.detail.notFound'),
   })
 }
 
 useSeoMeta({
-  title: `Eastquestria - ${album.title}`,
-  description: album.description,
-  ogTitle: album.title,
-  ogDescription: album.description,
+  title: () => `Eastquestria - ${t(`albums.items.${album.slug}.title`)}`,
+  description: () => t(`albums.items.${album.slug}.description`),
+  ogTitle: () => t(`albums.items.${album.slug}.title`),
+  ogDescription: () => t(`albums.items.${album.slug}.description`),
   ogImage: album.cover,
 })
 </script>

@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const stats = [
-  { value: 6, label: '发行的专辑' },
-  { value: 81, label: '发行的单曲' },
-  { value: 114, label: '总播放量' },
-  { value: 514, label: '常驻的巨神' },
+  { value: 6, key: 'albums' },
+  { value: 81, key: 'songs' },
+  { value: 114, key: 'plays' },
+  { value: 514, key: 'gods' },
 ]
 
+const { t } = useI18n()
 const sectionElement = ref<HTMLElement | null>(null)
 const displayedValues = ref(stats.map(({ value }) => value))
 
@@ -65,13 +66,13 @@ onBeforeUnmount(() => {
   <section id="facts" ref="sectionElement" class="stats-section">
     <div class="container">
       <header class="section-header">
-        <h2 class="section-title">统计</h2>
-        <p class="section-description">ESQ自成立以来所有的统计数据</p>
+        <h2 class="section-title">{{ t('home.stats.title') }}</h2>
+        <p class="section-description">{{ t('home.stats.description') }}</p>
       </header>
 
       <dl class="stats-section__grid">
-        <div v-for="(stat, index) in stats" :key="stat.label" class="stats-section__item">
-          <dt>{{ stat.label }}</dt>
+        <div v-for="(stat, index) in stats" :key="stat.key" class="stats-section__item">
+          <dt>{{ t(`home.stats.${stat.key}`) }}</dt>
           <dd>{{ displayedValues[index] }}</dd>
         </div>
       </dl>

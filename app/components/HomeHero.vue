@@ -7,72 +7,67 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 
 interface HeroSlide {
-  title: string
-  subtitle?: string
-  description: string
+  id: string
+  hasSubtitle?: boolean
   background: string
   cover: string
   titleImage?: string
   link: string
-  linkLabel: string
   external?: boolean
 }
 
+const { t } = useI18n()
+const localePath = useLocalePath()
 const swiperModules = [A11y, Autoplay, EffectFade, Pagination]
+const swiperA11y = computed(() => ({
+  enabled: true,
+  containerMessage: t('home.hero.label'),
+  paginationBulletMessage: t('home.hero.goToSlide', { number: '{{index}}' }),
+}))
 
 const slides: HeroSlide[] = [
   {
-    title: '东方小马国 Vol.4 随想曲',
-    description: '齐聚元旦，团圆东方小马国！我们于2026年的元旦发行了由15位创作者参与的15支原创小马同人音乐作品！',
+    id: 'album5',
     background: '/assets/img/album/album-5-bg.png',
     cover: '/assets/img/album/album-5.jpg',
     titleImage: '/assets/img/album/album-5-title.png',
     link: '/album/album-5',
-    linkLabel: '查看详情',
   },
   {
-    title: '10kmoonz',
-    subtitle: '独立于 Vol.4 Caprice 随想曲',
-    description: '本专辑为MKAO Ind.为大家带来的先锋专辑"10kmoonz"，采用Hyperpop高能流行风格，为听众带来高能体验，就好比一万个月亮！',
+    id: 'indie1',
+    hasSubtitle: true,
     background: '/assets/img/album/indie/1-bg.webp',
     cover: '/assets/img/album/indie/1.webp',
     link: 'https://music.163.com/#/album/355427546',
-    linkLabel: '在网易云收听',
     external: true,
   },
   {
-    title: '众生为爱而生',
-    subtitle: '独立于 Vol.4 Caprice 随想曲',
-    description: '本专辑为安亓然啊为大家带来的先锋专辑《众生为爱而生》，一曲嘻哈说唱讲述了多个角色交织之时这故事的展开。由衷感谢forgeey的图画。',
+    id: 'indie2',
+    hasSubtitle: true,
     background: '/assets/img/album/indie/2-bg.webp',
     cover: '/assets/img/album/indie/2.webp',
     link: 'https://music.163.com/#/album/355430585',
-    linkLabel: '在网易云收听',
     external: true,
   },
   {
-    title: '落雪',
-    description: '中国小马音乐厂牌Eastquestria发布的小马落雪专项专辑',
+    id: 'snowdrop',
     background: '/assets/img/album/album-tb-1-bg.png',
     cover: '/assets/img/album/album-tb-1.jpg',
     titleImage: '/assets/img/album/album-tb-1-title.png',
     link: '/album/album-tb-1',
-    linkLabel: '查看详情',
   },
   {
-    title: '东方小马国 Vol.3',
-    description: '国内首个综合性小马同人音乐厂牌的第三张专辑',
+    id: 'album4',
     background: '/assets/img/album/album-4-bg.png',
     cover: '/assets/img/album/album-4.jpg',
     titleImage: '/assets/img/album/album-4-title.png',
     link: '/album/album-4',
-    linkLabel: '查看详情',
   },
 ]
 </script>
 
 <template>
-  <section id="hero" class="hero" aria-label="精选专辑轮播">
+  <section id="hero" class="hero" :aria-label="t('home.hero.label')">
     <Swiper
       class="hero__swiper"
       :modules="swiperModules"
@@ -88,12 +83,12 @@ const slides: HeroSlide[] = [
         pauseOnMouseEnter: true,
       }"
       :pagination="{ clickable: true }"
-      :a11y="{ enabled: true }"
+      :a11y="swiperA11y"
       :grab-cursor="true"
     >
       <SwiperSlide
         v-for="slide in slides"
-        :key="slide.title"
+        :key="slide.id"
         class="hero__slide"
       >
         <div
@@ -104,31 +99,36 @@ const slides: HeroSlide[] = [
 
         <article class="hero__content container">
           <div class="hero__cover">
-            <img :src="slide.cover" :alt="`${slide.title}专辑封面`">
+            <img
+              :src="slide.cover"
+              :alt="t('common.albumCover', { title: t(`home.hero.slides.${slide.id}.title`) })"
+            >
           </div>
 
           <div class="hero__info">
             <img
               v-if="slide.titleImage"
               :src="slide.titleImage"
-              :alt="slide.title"
+              :alt="t(`home.hero.slides.${slide.id}.title`)"
               class="hero__title-image"
             >
-            <h1 v-else class="hero__title">{{ slide.title }}</h1>
-            <p v-if="slide.subtitle" class="hero__subtitle">{{ slide.subtitle }}</p>
-            <p class="hero__description">{{ slide.description }}</p>
+            <h1 v-else class="hero__title">{{ t(`home.hero.slides.${slide.id}.title`) }}</h1>
+            <p v-if="slide.hasSubtitle" class="hero__subtitle">
+              {{ t(`home.hero.slides.${slide.id}.subtitle`) }}
+            </p>
+            <p class="hero__description">{{ t(`home.hero.slides.${slide.id}.description`) }}</p>
             <a
               v-if="slide.external"
               :href="slide.link"
               class="hero__button"
               target="_blank"
               rel="noreferrer"
-            >{{ slide.linkLabel }}</a>
+            >{{ t('common.listenOnNetease') }}</a>
             <NuxtLink
               v-else
-              :to="slide.link"
+              :to="localePath(slide.link)"
               class="hero__button"
-            >{{ slide.linkLabel }}</NuxtLink>
+            >{{ t('common.viewDetails') }}</NuxtLink>
           </div>
         </article>
       </SwiperSlide>

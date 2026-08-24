@@ -1,23 +1,21 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 const members = [
   {
-    name: 'Jrtos',
-    role: 'ESQ的主创之一',
+    id: 'jrtos',
     image: '/assets/img/team/Jrtos.jpg',
   },
   {
-    name: 'Cory',
-    role: 'ESQ的主创之一',
+    id: 'cory',
     image: '/assets/img/team/Cory.jpg',
   },
   {
-    name: '御坂美麒',
-    role: '麒麟，到！',
+    id: 'kirin',
     image: '/assets/img/team/麒麟.jpg',
   },
   {
-    name: '凤奇宇洛',
-    role: '文案高手',
+    id: 'fengqi',
     image: '/assets/img/team/凤奇宇洛.jpg',
   },
 ]
@@ -27,23 +25,23 @@ const members = [
   <section id="team" class="team-section">
     <div class="container">
       <header class="section-header">
-        <h2 class="section-title">团队</h2>
-        <p class="section-description">ESQ的主要成员</p>
+        <h2 class="section-title">{{ t('home.team.title') }}</h2>
+        <p class="section-description">{{ t('home.team.description') }}</p>
       </header>
 
       <div class="team-section__grid">
-        <article v-for="member in members" :key="member.name" class="team-member">
+        <article v-for="member in members" :key="member.id" class="team-member">
           <div class="team-member__portrait">
             <img
               :src="member.image"
-              :alt="member.name"
+              :alt="t(`home.team.members.${member.id}.name`)"
               width="260"
               height="260"
               loading="lazy"
             >
           </div>
-          <h3>{{ member.name }}</h3>
-          <p>{{ member.role }}</p>
+          <h3>{{ t(`home.team.members.${member.id}.name`) }}</h3>
+          <p>{{ t(`home.team.members.${member.id}.role`) }}</p>
         </article>
       </div>
     </div>

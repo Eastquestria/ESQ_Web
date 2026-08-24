@@ -1,0 +1,171 @@
+{
+  "language": {
+    "switchToEnglish": "切换到英文",
+    "switchToChinese": "切换到中文"
+  },
+  "common": {
+    "home": "主页",
+    "albums": "专辑",
+    "links": "其他链接",
+    "bilibili": "B站",
+    "neteaseMusic": "网易云",
+    "equestriaMemory": "马国记忆",
+    "qqGroup": "加入 QQ 群聊",
+    "viewDetails": "查看详情",
+    "listenOnNetease": "在网易云收听",
+    "albumCover": "{title}专辑封面",
+    "breadcrumbs": "面包屑导航",
+    "mainNavigation": "主导航",
+    "pageLoading": "页面加载中",
+    "toggleNavigation": "切换导航菜单",
+    "backToTop": "返回顶部"
+  },
+  "footer": {
+    "marquee": "Eastquestria · 東方小馬國 ·",
+    "links": "友情外链",
+    "equestriaMemory": "马国记忆",
+    "equestriaCn": "小马中国"
+  },
+  "player": {
+    "loading": "正在加载歌单…",
+    "error": "歌单暂时无法加载，请稍后再试。"
+  },
+  "home": {
+    "hero": {
+      "label": "精选专辑轮播",
+      "goToSlide": "前往第 {number} 张专辑",
+      "slides": {
+        "album5": {
+          "title": "东方小马国 Vol.4 随想曲",
+          "description": "齐聚元旦，团圆东方小马国！我们于2026年的元旦发行了由15位创作者参与的15支原创小马同人音乐作品！"
+        },
+        "indie1": {
+          "title": "10kmoonz",
+          "subtitle": "独立于 Vol.4 Caprice 随想曲",
+          "description": "本专辑为MKAO Ind.为大家带来的先锋专辑\"10kmoonz\"，采用Hyperpop高能流行风格，为听众带来高能体验，就好比一万个月亮！"
+        },
+        "indie2": {
+          "title": "众生为爱而生",
+          "subtitle": "独立于 Vol.4 Caprice 随想曲",
+          "description": "本专辑为安亓然啊为大家带来的先锋专辑《众生为爱而生》，一曲嘻哈说唱讲述了多个角色交织之时这故事的展开。由衷感谢forgeey的图画。"
+        },
+        "snowdrop": {
+          "title": "落雪",
+          "description": "中国小马音乐厂牌Eastquestria发布的小马落雪专项专辑"
+        },
+        "album4": {
+          "title": "东方小马国 Vol.3",
+          "description": "国内首个综合性小马同人音乐厂牌的第三张专辑"
+        }
+      }
+    },
+    "about": {
+      "title": "关于我们",
+      "line1": "Eastquestria东方小马国，简称ESQ，是中国彩虹小马同人音乐社团",
+      "line2": "我们旨在为中国同人音乐创作者们提供最便利、最快速的音乐发行服务"
+    },
+    "songs": {
+      "title": "歌曲",
+      "description": "我们发行的部分歌曲"
+    },
+    "team": {
+      "title": "团队",
+      "description": "ESQ的主要成员",
+      "members": {
+        "jrtos": {
+          "name": "Jrtos",
+          "role": "ESQ的主创之一"
+        },
+        "cory": {
+          "name": "Cory",
+          "role": "ESQ的主创之一"
+        },
+        "kirin": {
+          "name": "御坂美麒",
+          "role": "麒麟，到！"
+        },
+        "fengqi": {
+          "name": "凤奇宇洛",
+          "role": "文案高手"
+        }
+      }
+    },
+    "stats": {
+      "title": "统计",
+      "description": "ESQ自成立以来所有的统计数据",
+      "albums": "发行的专辑",
+      "songs": "发行的单曲",
+      "plays": "总播放量",
+      "gods": "常驻的巨神"
+    }
+  },
+  "albums": {
+    "archive": {
+      "title": "专辑",
+      "description": "这是我们迄今为止发行的所有专辑",
+      "filterLabel": "专辑分类筛选",
+      "all": "全部专辑",
+      "regular": "常规专辑",
+      "special": "特别专辑"
+    },
+    "detail": {
+      "releaseDate": "发行时间",
+      "submissions": "投稿数",
+      "netease": "前往网易云专辑页",
+      "memory": "前往马国记忆资源贴",
+      "download": "前往 Pudding 资源站下载",
+      "notFound": "未找到该专辑"
+    },
+    "items": {
+      "album-5": {
+        "title": "Eastquestria Vol.4 Caprice",
+        "listTitle": "Special - Eastquestria Vol.4 Caprice",
+        "description": "齐聚元旦，团圆东方小马国！我们于2026年的元旦发行了由15位创作者参与的15支原创小马同人音乐作品！"
+      },
+      "album-tb-3": {
+        "title": "辐射小马国",
+        "listTitle": "Special - Fallout equestria",
+        "description": "辐射小马国特别专辑"
+      },
+      "album-tb-2": {
+        "title": "FPR 001",
+        "listTitle": "Special - FPR 001",
+        "description": "For Pony Raver “FPR”是由MKAO Ind.，Rinne，NSXWAVE，Chess Singularity等一众小马音乐人发起的小马同人电子舞曲企划"
+      },
+      "album-4": {
+        "title": "Eastquestria Vol.3 Rhapsody",
+        "listTitle": "Eastquestria Vol.3 Rhapsody",
+        "description": "国内首个综合性小马同人音乐厂牌的第三张专辑"
+      },
+      "album-tb-1": {
+        "title": "Snowdrop(落雪)",
+        "listTitle": "Special - Snowdrop",
+        "description": "中国小马音乐厂牌Eastquestria发布的小马落雪专项专辑"
+      },
+      "album-3": {
+        "title": "Eastquestria Vol.2 Legato",
+        "listTitle": "Eastquestria Vol.2 Legato",
+        "description": "国内首个综合性小马同人音乐厂牌的第二张专辑"
+      },
+      "album-2": {
+        "title": "Eastquestria Vol.1 Prelude Disc B",
+        "listTitle": "Eastquestria Vol.1 Prelude Disc B",
+        "description": "国内首个综合性小马同人音乐专辑"
+      },
+      "album-1": {
+        "title": "Eastquestria Vol.1 Prelude Disc A",
+        "listTitle": "Eastquestria Vol.1 Prelude Disc A",
+        "description": "国内首个综合性小马同人音乐专辑"
+      }
+    }
+  },
+  "seo": {
+    "siteTitle": "Eastquestria - 东方小马国",
+    "homeTitle": "Eastquestria - 东方小马国",
+    "homeDescription": "Eastquestria 东方小马国是中国彩虹小马同人音乐社团，致力于为同人音乐创作者提供音乐发行服务。",
+    "homeOgDescription": "中国彩虹小马同人音乐社团。",
+    "albumsTitle": "Eastquestria - 专辑",
+    "albumsDescription": "浏览 Eastquestria 东方小马国迄今发行的所有常规专辑与特别专辑。",
+    "albumsOgDescription": "Eastquestria 东方小马国专辑目录。"
+  }
+}
