@@ -3,6 +3,12 @@ const isScrolled = ref(false)
 const isMenuOpen = ref(false)
 const isLinksOpen = ref(false)
 const isPageReady = ref(false)
+const route = useRoute()
+
+const isHomeRoute = computed(() => route.path === '/')
+const isAlbumRoute = computed(() => route.path === '/album' || route.path.startsWith('/album/'))
+const isAlbumIndexRoute = computed(() => route.path === '/album' || route.path === '/album/')
+const hasSolidHeader = computed(() => isScrolled.value || isAlbumIndexRoute.value)
 
 const scrollingText = Array.from(
   { length: 12 },
@@ -24,6 +30,8 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
   closeNavigation()
 }
+
+watch(() => route.fullPath, closeNavigation)
 
 onMounted(() => {
   updateScrollState()
@@ -57,7 +65,10 @@ onBeforeUnmount(() => {
   <header
     id="header"
     class="site-header"
-    :class="{ 'site-header--scrolled': isScrolled }"
+    :class="{
+      'site-header--solid': hasSolidHeader,
+      'site-header--scrolled': isScrolled,
+    }"
   >
     <div class="container site-header__inner">
       <NuxtLink to="/" class="site-logo" aria-label="Eastquestria 首页" @click="closeNavigation">
@@ -72,10 +83,20 @@ onBeforeUnmount(() => {
       >
         <ul class="site-navigation__list">
           <li>
-            <a class="site-navigation__link is-active" href="/#hero" @click="closeNavigation">主页</a>
+            <NuxtLink
+              to="/#hero"
+              class="site-navigation__link"
+              :class="{ 'is-active': isHomeRoute }"
+              @click="closeNavigation"
+            >主页</NuxtLink>
           </li>
           <li>
-            <a class="site-navigation__link" href="/album/album.html" @click="closeNavigation">专辑</a>
+            <NuxtLink
+              to="/album"
+              class="site-navigation__link"
+              :class="{ 'is-active': isAlbumRoute }"
+              @click="closeNavigation"
+            >专辑</NuxtLink>
           </li>
           <li class="site-navigation__dropdown" :class="{ 'is-open': isLinksOpen }">
             <button
@@ -97,7 +118,7 @@ onBeforeUnmount(() => {
             </ul>
           </li>
           <li>
-            <a class="site-navigation__link" href="/english/index.html" @click="closeNavigation"><strong>EN</strong></a>
+            <a class="site-navigation__link" href="/english" @click="closeNavigation"><strong>EN</strong></a>
           </li>
         </ul>
       </nav>
@@ -201,10 +222,14 @@ onBeforeUnmount(() => {
   transition: height 0.5s ease, background-color 0.5s ease, backdrop-filter 0.5s ease;
 }
 
-.site-header--scrolled {
-  height: 70px;
+.site-header--solid {
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+}
+
+.site-header--scrolled {
+  height: 70px;
 }
 
 .site-header__inner {

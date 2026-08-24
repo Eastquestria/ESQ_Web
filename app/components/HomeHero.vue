@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { A11y, Autoplay, EffectFade, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/css'
+import 'swiper/css/a11y'
+import 'swiper/css/effect-fade'
+import 'swiper/css/pagination'
+
 interface HeroSlide {
   title: string
   subtitle?: string
@@ -11,6 +18,8 @@ interface HeroSlide {
   external?: boolean
 }
 
+const swiperModules = [A11y, Autoplay, EffectFade, Pagination]
+
 const slides: HeroSlide[] = [
   {
     title: '东方小马国 Vol.4 随想曲',
@@ -18,7 +27,7 @@ const slides: HeroSlide[] = [
     background: '/assets/img/album/album-5-bg.png',
     cover: '/assets/img/album/album-5.jpg',
     titleImage: '/assets/img/album/album-5-title.png',
-    link: '/album/album-5.html',
+    link: '/album/album-5',
     linkLabel: '查看详情',
   },
   {
@@ -47,7 +56,7 @@ const slides: HeroSlide[] = [
     background: '/assets/img/album/album-tb-1-bg.png',
     cover: '/assets/img/album/album-tb-1.jpg',
     titleImage: '/assets/img/album/album-tb-1-title.png',
-    link: '/album/album-tb-1.html',
+    link: '/album/album-tb-1',
     linkLabel: '查看详情',
   },
   {
@@ -56,96 +65,74 @@ const slides: HeroSlide[] = [
     background: '/assets/img/album/album-4-bg.png',
     cover: '/assets/img/album/album-4.jpg',
     titleImage: '/assets/img/album/album-4-title.png',
-    link: '/album/album-4.html',
+    link: '/album/album-4',
     linkLabel: '查看详情',
   },
 ]
-
-const currentSlide = ref(0)
-const selectedSlide = computed(() => slides[currentSlide.value]!)
-let autoplayTimer: number | undefined
-
-function stopAutoplay() {
-  if (autoplayTimer) {
-    window.clearInterval(autoplayTimer)
-    autoplayTimer = undefined
-  }
-}
-
-function startAutoplay() {
-  stopAutoplay()
-  autoplayTimer = window.setInterval(() => {
-    currentSlide.value = (currentSlide.value + 1) % slides.length
-  }, 5000)
-}
-
-function selectSlide(index: number) {
-  currentSlide.value = index
-  startAutoplay()
-}
-
-onMounted(startAutoplay)
-onBeforeUnmount(stopAutoplay)
 </script>
 
 <template>
-  <section
-    id="hero"
-    class="hero"
-    aria-label="精选专辑"
-    @mouseenter="stopAutoplay"
-    @mouseleave="startAutoplay"
-    @focusin="stopAutoplay"
-    @focusout="startAutoplay"
-  >
-    <div class="hero__backgrounds" aria-hidden="true">
-      <div
-        v-for="(slide, index) in slides"
-        :key="slide.background"
-        class="hero__background"
-        :class="{ 'hero__background--active': index === currentSlide }"
-        :style="{ backgroundImage: `url(${slide.background})` }"
-      />
-    </div>
-
-    <Transition name="hero-content" mode="out-in">
-      <article :key="currentSlide" class="hero__content container">
-        <div class="hero__cover">
-          <img :src="selectedSlide.cover" :alt="`${selectedSlide.title}专辑封面`">
-        </div>
-
-        <div class="hero__info">
-          <img
-            v-if="selectedSlide.titleImage"
-            :src="selectedSlide.titleImage"
-            :alt="selectedSlide.title"
-            class="hero__title-image"
-          >
-          <h1 v-else class="hero__title">{{ selectedSlide.title }}</h1>
-          <p v-if="selectedSlide.subtitle" class="hero__subtitle">{{ selectedSlide.subtitle }}</p>
-          <p class="hero__description">{{ selectedSlide.description }}</p>
-          <a
-            :href="selectedSlide.link"
-            class="hero__button"
-            :target="selectedSlide.external ? '_blank' : undefined"
-            :rel="selectedSlide.external ? 'noreferrer' : undefined"
-          >{{ selectedSlide.linkLabel }}</a>
-        </div>
-      </article>
-    </Transition>
-
-    <div class="hero__pagination" aria-label="选择精选专辑">
-      <button
-        v-for="(slide, index) in slides"
+  <section id="hero" class="hero" aria-label="精选专辑轮播">
+    <Swiper
+      class="hero__swiper"
+      :modules="swiperModules"
+      :slides-per-view="1"
+      :space-between="0"
+      :loop="true"
+      effect="fade"
+      :fade-effect="{ crossFade: true }"
+      :speed="1000"
+      :autoplay="{
+        delay: 5000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      }"
+      :pagination="{ clickable: true }"
+      :a11y="{ enabled: true }"
+      :grab-cursor="true"
+    >
+      <SwiperSlide
+        v-for="slide in slides"
         :key="slide.title"
-        type="button"
-        class="hero__pagination-button"
-        :class="{ 'hero__pagination-button--active': index === currentSlide }"
-        :aria-current="index === currentSlide ? 'true' : undefined"
-        :aria-label="`显示第 ${index + 1} 张专辑：${slide.title}`"
-        @click="selectSlide(index)"
-      />
-    </div>
+        class="hero__slide"
+      >
+        <div
+          class="hero__background"
+          :style="{ backgroundImage: `url(${slide.background})` }"
+          aria-hidden="true"
+        />
+
+        <article class="hero__content container">
+          <div class="hero__cover">
+            <img :src="slide.cover" :alt="`${slide.title}专辑封面`">
+          </div>
+
+          <div class="hero__info">
+            <img
+              v-if="slide.titleImage"
+              :src="slide.titleImage"
+              :alt="slide.title"
+              class="hero__title-image"
+            >
+            <h1 v-else class="hero__title">{{ slide.title }}</h1>
+            <p v-if="slide.subtitle" class="hero__subtitle">{{ slide.subtitle }}</p>
+            <p class="hero__description">{{ slide.description }}</p>
+            <a
+              v-if="slide.external"
+              :href="slide.link"
+              class="hero__button"
+              target="_blank"
+              rel="noreferrer"
+            >{{ slide.linkLabel }}</a>
+            <NuxtLink
+              v-else
+              :to="slide.link"
+              class="hero__button"
+            >{{ slide.linkLabel }}</NuxtLink>
+          </div>
+        </article>
+      </SwiperSlide>
+    </Swiper>
   </section>
 </template>
 
@@ -159,7 +146,17 @@ onBeforeUnmount(stopAutoplay)
   background: #080808;
 }
 
-.hero__backgrounds,
+.hero__swiper,
+.hero__slide {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__slide {
+  position: relative;
+  overflow: hidden;
+}
+
 .hero__background,
 .hero__background::before {
   position: absolute;
@@ -169,19 +166,17 @@ onBeforeUnmount(stopAutoplay)
 .hero__background {
   background-position: center;
   background-size: cover;
-  opacity: 0;
   transform: scale(1.015);
-  transition: opacity 1s ease, transform 5s ease;
+  transition: transform 5s ease;
+}
+
+.swiper-slide-active .hero__background {
+  transform: scale(1);
 }
 
 .hero__background::before {
   background: rgba(0, 0, 0, 0.5);
   content: "";
-}
-
-.hero__background--active {
-  opacity: 1;
-  transform: scale(1);
 }
 
 .hero__content {
@@ -260,48 +255,30 @@ onBeforeUnmount(stopAutoplay)
   color: #000;
 }
 
-.hero__pagination {
-  position: absolute;
-  right: 0;
+.hero :deep(.swiper-pagination) {
   bottom: 28px;
-  left: 0;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
 }
 
-.hero__pagination-button {
+.hero :deep(.swiper-pagination-bullet) {
   width: 20px;
   height: 4px;
-  padding: 0;
-  border: 0;
-  background: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: width 0.5s ease, background-color 0.3s ease;
-}
-
-.hero__pagination-button:hover,
-.hero__pagination-button:focus-visible,
-.hero__pagination-button--active {
-  width: 30px;
+  margin: 0 !important;
+  border-radius: 0;
   background: #fff;
+  opacity: 0.5;
+  transition: width 0.5s ease, opacity 0.3s ease;
 }
 
-.hero-content-enter-active,
-.hero-content-leave-active {
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-
-.hero-content-enter-from {
-  opacity: 0;
-  transform: translateX(18px);
-}
-
-.hero-content-leave-to {
-  opacity: 0;
-  transform: translateX(-18px);
+.hero :deep(.swiper-pagination-bullet:hover),
+.hero :deep(.swiper-pagination-bullet:focus-visible),
+.hero :deep(.swiper-pagination-bullet-active) {
+  width: 30px;
+  opacity: 1;
 }
 
 @media (max-width: 991px) {
