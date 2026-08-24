@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { A11y, Autoplay, EffectFade, Pagination } from 'swiper/modules'
+import type { Swiper as SwiperInstance } from 'swiper'
+import { A11y, Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/a11y'
-import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 
 interface HeroSlide {
@@ -18,7 +18,8 @@ interface HeroSlide {
 
 const { t } = useI18n()
 const localePath = useLocalePath()
-const swiperModules = [A11y, Autoplay, EffectFade, Pagination]
+const activeSlideIndex = ref(0)
+const swiperModules = [A11y, Autoplay, Pagination]
 const swiperA11y = computed(() => ({
   enabled: true,
   containerMessage: t('home.hero.label'),
@@ -64,18 +65,31 @@ const slides: HeroSlide[] = [
     link: '/album/album-4',
   },
 ]
+
+function updateActiveSlide(swiper: SwiperInstance) {
+  activeSlideIndex.value = swiper.realIndex
+}
 </script>
 
 <template>
   <section id="hero" class="hero" :aria-label="t('home.hero.label')">
+    <div class="hero__backgrounds" aria-hidden="true">
+      <div
+        v-for="(slide, index) in slides"
+        :key="`${slide.id}-background`"
+        class="hero__background"
+        :class="{ 'hero__background--active': index === activeSlideIndex }"
+        :style="{ backgroundImage: `url(${slide.background})` }"
+      />
+    </div>
+
     <Swiper
       class="hero__swiper"
       :modules="swiperModules"
       :slides-per-view="1"
       :space-between="0"
       :loop="true"
-      effect="fade"
-      :fade-effect="{ crossFade: true }"
+      effect="slide"
       :speed="1000"
       :autoplay="{
         delay: 5000,
@@ -85,18 +99,13 @@ const slides: HeroSlide[] = [
       :pagination="{ clickable: true }"
       :a11y="swiperA11y"
       :grab-cursor="true"
+      @real-index-change="updateActiveSlide"
     >
       <SwiperSlide
         v-for="slide in slides"
         :key="slide.id"
         class="hero__slide"
       >
-        <div
-          class="hero__background"
-          :style="{ backgroundImage: `url(${slide.background})` }"
-          aria-hidden="true"
-        />
-
         <article class="hero__content container">
           <div class="hero__cover">
             <img
@@ -152,25 +161,37 @@ const slides: HeroSlide[] = [
   height: 100%;
 }
 
+.hero__swiper {
+  position: relative;
+  z-index: 1;
+}
+
 .hero__slide {
   position: relative;
   overflow: hidden;
 }
 
+.hero__backgrounds,
 .hero__background,
 .hero__background::before {
   position: absolute;
   inset: 0;
 }
 
+.hero__backgrounds {
+  pointer-events: none;
+}
+
 .hero__background {
   background-position: center;
   background-size: cover;
+  opacity: 0;
   transform: scale(1.015);
-  transition: transform 5s ease;
+  transition: opacity 1s ease, transform 5s ease;
 }
 
-.swiper-slide-active .hero__background {
+.hero__background--active {
+  opacity: 1;
   transform: scale(1);
 }
 
