@@ -55,7 +55,7 @@ useSeoMeta({
           >{{ t(`albums.archive.${filter.key}`) }}</button>
         </div>
 
-        <TransitionGroup name="album-grid" tag="div" class="album-grid">
+        <TransitionGroup name="album-list" tag="div" class="album-list">
           <AlbumCard
             v-for="album in filteredAlbums"
             :key="album.slug"
@@ -121,7 +121,6 @@ useSeoMeta({
 .album-filters button {
   padding: 12px 18px 14px;
   border: 0;
-  border-radius: 4px;
   background: #1e1e1e;
   color: #e0e0e0;
   cursor: pointer;
@@ -138,27 +137,23 @@ useSeoMeta({
   color: #fff;
 }
 
-.album-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+.album-list {
+  display: flex;
+  width: min(100%, 960px);
+  margin-inline: auto;
+  flex-direction: column;
+  gap: clamp(32px, 5vw, 56px);
 }
 
-.album-grid-enter-active,
-.album-grid-leave-active {
+.album-list-enter-active,
+.album-list-leave-active {
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.album-grid-enter-from,
-.album-grid-leave-to {
+.album-list-enter-from,
+.album-list-leave-to {
   opacity: 0;
   transform: translateY(12px);
-}
-
-@media (max-width: 991px) {
-  .album-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 575px) {
@@ -170,8 +165,8 @@ useSeoMeta({
     padding: 64px 0;
   }
 
-  .album-grid {
-    grid-template-columns: 1fr;
+  .album-list {
+    gap: 32px;
   }
 }
 </style>
